@@ -24,10 +24,11 @@ func BasketController() {
 				"basket": "",
 			})
 		})
-	}
 
-	/*
-		CREATE BASKET FOR SESSION
-		ALLOW USER TO ADD ITEMS TO BASKET
-	*/
+		// CREATE ONE BASKET
+
+		// EDIT ONE BASKET
+
+		// EMPTY BASKET
+	}
 }

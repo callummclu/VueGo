@@ -9,6 +9,7 @@ import (
 func ProductContoller() {
 	api := Router.Group("product")
 	{
+		// GET ALL PRODUCTS
 		api.GET("", func(c *gin.Context) {
 			var products []models.Product
 
@@ -17,6 +18,7 @@ func ProductContoller() {
 			})
 		})
 
+		// GET ONE PRODUCT
 		api.GET(":id", func(c *gin.Context) {
 			id := c.Params.ByName("id")
 
@@ -25,6 +27,7 @@ func ProductContoller() {
 			})
 		})
 
+		// CREATE ONE PRODUCT
 		api.POST("", func(c *gin.Context) {
 			var product models.Product
 			c.BindJSON(&product)
@@ -34,6 +37,7 @@ func ProductContoller() {
 			})
 		})
 
+		// DELETE ONE PRODUCTS
 		api.DELETE(":id", func(c *gin.Context) {
 
 			id := c.Params.ByName("id")
@@ -44,5 +48,9 @@ func ProductContoller() {
 				"message": result.RowsAffected,
 			})
 		})
+
+		// DELETE ALL PRODUCTS
+
+		// EDIT ONE PRODUCT
 	}
 }
