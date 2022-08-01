@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"go-vue-ecommerce-site/models"
 	"math/rand"
 
 	"github.com/gin-gonic/gin"
@@ -20,22 +19,15 @@ func RandStringBytes(n int) string {
 func BasketController() {
 	api := Router.Group("basket")
 	{
-		api.POST("", func(c *gin.Context) {
-			var basket models.Basket
-
-			result := models.DB.Create(&basket)
-
+		api.GET("", func(c *gin.Context) {
 			c.JSON(200, gin.H{
-				"basket": result.Value,
+				"basket": "",
 			})
 		})
-
-		api.GET(":id", func(c *gin.Context) {
-			id := c.Params.ByName("id")
-			c.JSON(200, gin.H{
-				"basket": models.DB.First(&models.Basket{}, id),
-			})
-		})
-
 	}
+
+	/*
+		CREATE BASKET FOR SESSION
+		ALLOW USER TO ADD ITEMS TO BASKET
+	*/
 }

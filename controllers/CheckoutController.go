@@ -15,5 +15,6 @@ func CheckoutController() {
 	/*
 		CHECKOUT ITEMS IN BASKET
 			- CHECK BASKET IS VALID
+			- DELETE BASKET
 	*/
 }
