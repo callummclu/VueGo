@@ -2,6 +2,5 @@
 </script>
 
 <template>
-  <main>
-  </main>
+  <p>This is the homepage</p>
 </template>
