@@ -6,10 +6,10 @@
       }
     },
     mounted() {
-      fetch("http://localhost:8000/product").then(async (res:any) => {
+      fetch("http://localhost:3000/product").then(async (res:any) => {
         let res_json = await res.json()
         
-        this.data = res_json.product.Value
+        this.data = res_json.data
       })
     }
   }
