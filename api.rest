@@ -35,7 +35,7 @@ GET http://localhost:3000/basket/62e9942df55a3425b876d3f2
 
 ###
 
-PUT http://localhost:3000/basket/62e9942df55a3425b876d3f2
+PUT http://localhost:3000/basket/62e99519f41e373d0f4ead7b
 
 {
     "items":[
@@ -47,3 +47,7 @@ PUT http://localhost:3000/basket/62e9942df55a3425b876d3f2
         }
     ]
 }
+
+###
+
+POST http://localhost:3000/checkout/62e994a2f41e373d0f4ead7a
