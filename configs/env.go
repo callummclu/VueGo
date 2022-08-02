@@ -7,20 +7,18 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func EnvMongoURI() string {
+func getEnvByName(name string) string {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("error loading .env file")
 	}
+	return os.Getenv(name)
+}
 
-	return os.Getenv("MONGOURI")
+func EnvMongoURI() string {
+	return getEnvByName("MONGOURI")
 }
 
 func EnvPORT() string {
-	err := godotenv.Load()
-	if err != nil {
-		return ":8000"
-	}
-
-	return ":" + os.Getenv("PORT")
+	return ":" + getEnvByName("PORT")
 }

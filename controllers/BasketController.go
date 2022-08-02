@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"go-vue-ecommerce-site/middleware"
-	_ "go-vue-ecommerce-site/models"
 	"go-vue-ecommerce-site/services"
 )
 
