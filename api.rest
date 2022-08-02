@@ -1,0 +1,28 @@
+POST http://localhost:3000/basket
+
+{
+    "items":[
+        {
+            "productName":"shoes"
+        }
+    ]
+}
+
+###
+
+GET http://localhost:3000/basket/62e96168c6cf3435704895ae
+
+###
+
+PUT http://localhost:3000/basket/62e96168c6cf3435704895ae
+
+{
+    "items":[
+        {
+            "productName":"shoes"
+        },
+        {
+            "productName":"feet"
+        }
+    ]
+}
