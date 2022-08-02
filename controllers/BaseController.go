@@ -7,6 +7,7 @@ import (
 var Router *gin.Engine = gin.Default()
 
 func BaseController() {
+	BasketController()
 	CheckoutController()
 	ProductContoller()
 }

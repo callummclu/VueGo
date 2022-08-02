@@ -1,10 +1,16 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"go-vue-ecommerce-site/middleware"
+
+	"github.com/gin-gonic/gin"
+)
 
 func CheckoutController() {
 	api := Router.Group("checkout")
 	{
+		api.Use(middleware.CORSMiddleware())
+
 		api.GET("", func(c *gin.Context) {
 			c.JSON(200, gin.H{
 				"checkout": "empty",

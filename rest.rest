@@ -1,19 +1,17 @@
-POST http://localhost:8000/product
+POST http://localhost:8000/basket
 
 {
-    "id":"1",
-    "ProductName":"Pooes",
-    "price":113.43
+    "Id":"1",
+    "Items":[
+        {
+            "id":"1",
+            "productName":"shoe",
+            "price":10.99,
+            "quantity":1
+        }
+    ]
 }
 
 ###
 
-GET http://localhost:8000/product 
-
-###
-
-DELETE http://localhost:8000/product
-
-###
-
-GET http://localhost:8000/product/9
+GET http://localhost:8000/basket/62
