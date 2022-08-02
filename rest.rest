@@ -2,7 +2,7 @@ POST http://localhost:8000/product
 
 {
     "id":"1",
-    "title":"Shoes",
+    "ProductName":"Pooes",
     "price":113.43
 }
 
@@ -12,26 +12,8 @@ GET http://localhost:8000/product
 
 ###
 
+DELETE http://localhost:8000/product
+
+###
+
 GET http://localhost:8000/product/9
-
-###
-
-DELETE http://localhost:8000/product/7
-
-###
-
-GET http://localhost:8000/basket/3
-
-###
-
-POST http://localhost:8000/basket
-
-###
-
-POST http://localhost:8000/basket/3
-
-{
-    "id":"1",
-    "title":"Shoes",
-    "price":113.43
-}

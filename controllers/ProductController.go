@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"go-vue-ecommerce-site/middleware"
 	"go-vue-ecommerce-site/models"
 
 	"github.com/gin-gonic/gin"
@@ -9,6 +10,9 @@ import (
 func ProductContoller() {
 	api := Router.Group("product")
 	{
+
+		api.Use(middleware.CORSMiddleware())
+
 		// GET ALL PRODUCTS
 		api.GET("", func(c *gin.Context) {
 			var products []models.Product
@@ -50,6 +54,13 @@ func ProductContoller() {
 		})
 
 		// DELETE ALL PRODUCTS
+		api.DELETE("", func(c *gin.Context) {
+			result := models.DB.Delete(&models.Product{})
+
+			c.JSON(200, gin.H{
+				"message": result.RowsAffected,
+			})
+		})
 
 		// EDIT ONE PRODUCT
 	}
