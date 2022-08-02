@@ -15,6 +15,6 @@ func ProductContoller() {
 		api.GET(":id", services.GetOneProduct())
 		api.POST("", services.CreateOneProduct())
 		api.DELETE("", services.DeleteOneProduct())
-		api.PATCH(":id", services.EditOneProduct())
+		api.PUT(":id", services.EditOneProduct())
 	}
 }

@@ -1,11 +1,24 @@
-POST http://localhost:3000/basket
+POST http://localhost:3000/product
+
 
 {
-    "items":[
-        {
-            "productName":"shoes"
-        }
-    ]
+    "productName":"shoes",
+    "price": 10.99,
+    "quantity": 1
+}
+
+###
+
+GET http://localhost:3000/product
+
+###
+
+PUT http://localhost:3000/product/62e968f39cebf1e4c467971b
+
+{
+    "productName":"shoes",
+    "price": 109.90,
+    "quantity":10
 }
 
 ###
