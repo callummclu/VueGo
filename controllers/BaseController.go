@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"go-vue-ecommerce-site/configs"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,4 +12,5 @@ func BaseController() {
 	BasketController()
 	CheckoutController()
 	ProductContoller()
+	Router.Run(configs.EnvPORT())
 }

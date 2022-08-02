@@ -2,9 +2,8 @@ package controllers
 
 import (
 	"go-vue-ecommerce-site/middleware"
-	"go-vue-ecommerce-site/models"
-
-	"github.com/gin-gonic/gin"
+	_ "go-vue-ecommerce-site/models"
+	"go-vue-ecommerce-site/services"
 )
 
 func BasketController() {
@@ -12,13 +11,8 @@ func BasketController() {
 	{
 		api.Use(middleware.CORSMiddleware())
 
-		api.POST("", func(c *gin.Context) {
-			var basket models.Basket
-			c.BindJSON(&basket)
-			result := models.DB.Create(&basket)
-			c.JSON(200, gin.H{
-				"checkout": result,
-			})
-		})
+		api.POST("", services.CreateBasket())
+		api.GET(":id", services.GetBasket())
+		api.POST(":id", services.UpdateBasket())
 	}
 }

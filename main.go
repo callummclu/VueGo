@@ -1,8 +1,8 @@
 package main
 
 import (
+	"go-vue-ecommerce-site/configs"
 	"go-vue-ecommerce-site/controllers"
-	"go-vue-ecommerce-site/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,7 +11,6 @@ var Router *gin.Engine
 
 func main() {
 
-	models.Connect()
+	configs.ConnectDB()
 	controllers.BaseController()
-	controllers.Router.Run(":8000")
 }

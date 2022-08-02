@@ -2,8 +2,7 @@ package controllers
 
 import (
 	"go-vue-ecommerce-site/middleware"
-
-	"github.com/gin-gonic/gin"
+	"go-vue-ecommerce-site/services"
 )
 
 func CheckoutController() {
@@ -11,16 +10,6 @@ func CheckoutController() {
 	{
 		api.Use(middleware.CORSMiddleware())
 
-		api.GET("", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"checkout": "empty",
-			})
-		})
+		api.POST(":id", services.CheckoutBasket())
 	}
-
-	/*
-		CHECKOUT ITEMS IN BASKET
-			- CHECK BASKET IS VALID
-			- DELETE BASKET
-	*/
 }
