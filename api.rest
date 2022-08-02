@@ -23,11 +23,19 @@ PUT http://localhost:3000/product/62e968f39cebf1e4c467971b
 
 ###
 
-GET http://localhost:3000/basket/62e96168c6cf3435704895ae
+POST http://localhost:3000/basket
+
+{
+    "items":[]
+}
 
 ###
 
-PUT http://localhost:3000/basket/62e96168c6cf3435704895ae
+GET http://localhost:3000/basket/62e9942df55a3425b876d3f2
+
+###
+
+PUT http://localhost:3000/basket/62e9942df55a3425b876d3f2
 
 {
     "items":[

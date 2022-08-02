@@ -3,7 +3,6 @@ package services
 import (
 	"go-vue-ecommerce-site/configs"
 	"go-vue-ecommerce-site/models"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,7 +20,8 @@ func CreateBasket() gin.HandlerFunc {
 		c.BindJSON(&basket)
 		result, err := basketCollection.InsertOne(c, basket)
 		if err != nil {
-			log.Fatal(err)
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
 		}
 		c.JSON(http.StatusOK, gin.H{"data": result})
 	}
@@ -33,13 +33,15 @@ func GetBasket() gin.HandlerFunc {
 		objectId, err := primitive.ObjectIDFromHex(c.Param("id"))
 
 		if err != nil {
-			log.Fatal(err)
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
 		}
 
 		err = basketCollection.FindOne(c, bson.D{{"_id", objectId}}).Decode(&basket)
 
 		if err != nil {
-			log.Fatal(err)
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
 		}
 
 		c.JSON(http.StatusOK, gin.H{"data": basket})
@@ -54,7 +56,7 @@ func UpdateBasket() gin.HandlerFunc {
 		objectId, err := primitive.ObjectIDFromHex(c.Param("id"))
 
 		if err != nil {
-			log.Fatal(err)
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
 		}
 
 		filter := bson.D{{"_id", objectId}}
@@ -63,7 +65,7 @@ func UpdateBasket() gin.HandlerFunc {
 		result, err := basketCollection.ReplaceOne(c, filter, update)
 
 		if err != nil {
-			log.Fatal(err)
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
 		}
 
 		c.JSON(http.StatusOK, gin.H{"data": result})

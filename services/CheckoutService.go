@@ -1,17 +1,31 @@
 package services
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 func CheckoutBasket() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// id := c.Params.ByName("id")
+		objectId, err := primitive.ObjectIDFromHex(c.Param("id"))
 
-		// var basket models.Basket
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
+		}
 
-		// models.DB.Delete(&basket, id)
+		result, err := basketCollection.DeleteOne(c, bson.D{{"_id", objectId}})
 
-		// c.JSON(200, gin.H{
-		// 	"checkout": "SUCCESS",
-		// })
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
+		}
+
+		// ADD SOME MORE CHECKOUT THINGS IN HERE
+
+		c.JSON(http.StatusOK, gin.H{"message": "Checkout successful!", "data": result})
 	}
 }
