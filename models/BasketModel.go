@@ -2,7 +2,7 @@ package models
 
 type Basket struct {
 	Items []Product `json:"items"`
-	Total float32   `json:"total"`
+	Total float64   `json:"total"`
 }
 
 func (Basket) TableName() string {

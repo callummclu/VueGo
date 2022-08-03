@@ -31,21 +31,18 @@ POST http://localhost:3000/basket
 
 ###
 
-GET http://localhost:3000/basket/62e9942df55a3425b876d3f2
+GET http://localhost:3000/basket/62ea460fc7a3a7d34abefd3b
 
 ###
 
-PUT http://localhost:3000/basket/62e99519f41e373d0f4ead7b
+POST http://localhost:3000/basket/62ea460fc7a3a7d34abefd3b
+
 
 {
-    "items":[
-        {
-            "productName":"shoes"
-        },
-        {
-            "productName":"feet"
-        }
-    ]
+    "_id":"1",
+    "productName":"pooes2",
+    "quantity": 1,
+    "price": 14.99
 }
 
 ###

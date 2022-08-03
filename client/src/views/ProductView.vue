@@ -22,7 +22,7 @@
         <p>£{{ product.price }}</p>
       <h3>{{ product.productName.length>0 ? product.productName : "undefined" }}</h3>
       </div>
-      <button>Add to Cart</button>
+      <button onclick="">Add to Cart</button>
     </div>
   </main>
 </template>
