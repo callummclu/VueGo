@@ -12,5 +12,6 @@ func BaseController() {
 	BasketController()
 	CheckoutController()
 	ProductContoller()
+	OrderController()
 	Router.Run(configs.EnvPORT())
 }

@@ -1,6 +1,7 @@
 package services
 
 import (
+	"go-vue-ecommerce-site/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,15 +18,26 @@ func CheckoutBasket() gin.HandlerFunc {
 			return
 		}
 
-		result, err := basketCollection.DeleteOne(c, bson.D{{"_id", objectId}})
+		var basket models.Basket
+		err = basketCollection.FindOne(c, bson.D{{"_id", objectId}}).Decode(&basket)
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "basket not found"})
+		}
+
+		order := models.Order{
+			BasketContent: basket,
+			Status:        "PAID",
+		}
+
+		result, err := orderCollection.InsertOne(c, order)
+
+		deleteResult, err := basketCollection.DeleteOne(c, bson.D{{"_id", objectId}})
 
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": err})
 			return
 		}
-
-		// ADD SOME MORE CHECKOUT THINGS IN HERE
-
-		c.JSON(http.StatusOK, gin.H{"message": "Checkout successful!", "data": result})
+		c.JSON(http.StatusOK, gin.H{"message": "Checkout successful!", "data": result, "deleteData": deleteResult})
 	}
 }
