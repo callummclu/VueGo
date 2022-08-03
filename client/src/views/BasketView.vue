@@ -6,7 +6,7 @@
       }
     },
     mounted() {
-      fetch("http://localhost:3000/basket/62e99519f41e373d0f4ead7b").then(async (res:any) => {
+      fetch(`http://localhost:3000/basket/${localStorage.getItem("basketId")}`).then(async (res:any) => {
         let res_json = await res.json()
         
         this.data = res_json.data

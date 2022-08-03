@@ -14,5 +14,6 @@ func BasketController() {
 		api.GET(":id", services.GetBasket())
 		api.POST(":id", services.AddToBasket())
 		api.PUT(":id", services.UpdateBasket())
+		api.DELETE(":id", services.DeleteOneFromBasket())
 	}
 }

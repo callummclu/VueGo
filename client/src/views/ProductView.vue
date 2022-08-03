@@ -5,6 +5,18 @@
         data:[]
       }
     },
+    methods:{
+      addItemToCart: function(product:any){
+        fetch(`http://localhost:3000/basket/${localStorage.getItem("basketId")}`,{
+          method:"POST",
+          body:JSON.stringify(product)
+        }).then(async (res:any) => {
+          let res_json = await res.json()
+          console.log(res_json)
+        })
+      }
+    }
+    ,
     mounted() {
       fetch("http://localhost:3000/product").then(async (res:any) => {
         let res_json = await res.json()
@@ -22,7 +34,7 @@
         <p>£{{ product.price }}</p>
       <h3>{{ product.productName.length>0 ? product.productName : "undefined" }}</h3>
       </div>
-      <button onclick="">Add to Cart</button>
+      <button v-on:click="addItemToCart(product)">Add to Cart</button>
     </div>
   </main>
 </template>

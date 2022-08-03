@@ -124,3 +124,8 @@ func AddToBasket() gin.HandlerFunc {
 		c.JSON(http.StatusOK, gin.H{"data": result})
 	}
 }
+
+func DeleteOneFromBasket() gin.HandlerFunc {
+	return func(c *gin.Context) {
+	}
+}

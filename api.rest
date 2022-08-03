@@ -2,8 +2,8 @@ POST http://localhost:3000/product
 
 
 {
-    "productName":"shoes",
-    "price": 10.99,
+    "productName":"Nike - 95",
+    "price": 149.99,
     "quantity": 1
 }
 
@@ -31,11 +31,11 @@ POST http://localhost:3000/basket
 
 ###
 
-GET http://localhost:3000/basket/62ea460fc7a3a7d34abefd3b
+GET http://localhost:3000/basket/62ea53aa131f0e12046a8107
 
 ###
 
-POST http://localhost:3000/basket/62ea460fc7a3a7d34abefd3b
+POST http://localhost:3000/basket/62ea553f131f0e12046a8108
 
 
 {
@@ -47,4 +47,13 @@ POST http://localhost:3000/basket/62ea460fc7a3a7d34abefd3b
 
 ###
 
-POST http://localhost:3000/checkout/62e994a2f41e373d0f4ead7a
+POST http://localhost:3000/checkout/62ea5126131f0e12046a8104
+
+
+###
+
+GET http://localhost:3000/order/62ea5138131f0e12046a8105
+
+###
+
+POST http://localhost:3000/order/62ea5138131f0e12046a8105
