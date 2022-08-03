@@ -2,6 +2,7 @@ package services
 
 import (
 	"go-vue-ecommerce-site/configs"
+	"go-vue-ecommerce-site/helpers"
 	"go-vue-ecommerce-site/models"
 	"net/http"
 
@@ -97,8 +98,11 @@ func AddToBasket() gin.HandlerFunc {
 				if item.ID == product.ID {
 					currentBasket.Items[i].Quantity++
 					currentBasket.Items[i].Price += product.Price
+					break
 				} else {
-					currentBasket.Items = append(currentBasket.Items, product)
+					if item == currentBasket.Items[len(currentBasket.Items)-1] {
+						currentBasket.Items = append(currentBasket.Items, product)
+					}
 				}
 			}
 		} else {
@@ -127,5 +131,54 @@ func AddToBasket() gin.HandlerFunc {
 
 func DeleteOneFromBasket() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var currentBasket models.Basket
+		objectId, err := primitive.ObjectIDFromHex(c.Param("id"))
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "cannot convert id to int"})
+			return
+		}
+
+		err = basketCollection.FindOne(c, bson.D{{"_id", objectId}}).Decode(&currentBasket)
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "cannot find item"})
+			return
+		}
+
+		var product models.Product
+		c.BindJSON(&product)
+
+		if len(currentBasket.Items) > 0 {
+			if len(currentBasket.Items) == 1 {
+				currentBasket.Items = nil
+			}
+
+			for i, item := range currentBasket.Items {
+				if item.ID == product.ID {
+					helpers.RemoveIndex(currentBasket.Items, i)
+				}
+			}
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "there are not items in basket."})
+		}
+
+		basketTotal := 0.00
+
+		for _, item := range currentBasket.Items {
+			basketTotal += float64(item.Price)
+		}
+
+		filter := bson.D{{"_id", objectId}}
+		update := bson.D{{"items", currentBasket.Items}, {"total", basketTotal}}
+
+		result, err := basketCollection.ReplaceOne(c, filter, update)
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "Cannot replace item"})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{"data": result})
 	}
 }

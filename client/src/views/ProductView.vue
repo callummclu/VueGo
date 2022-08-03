@@ -29,12 +29,21 @@
 
 <template>
   <main>
-    <div style="display:flex; align-items:center; justify-content: space-between;" v-for="product in data" :key="product.id">
-      <div style="display:flex; align-items:center;gap:25px;">
-        <p>£{{ product.price }}</p>
-      <h3>{{ product.productName.length>0 ? product.productName : "undefined" }}</h3>
-      </div>
-      <button v-on:click="addItemToCart(product)">Add to Cart</button>
+    <div v-for="product in data" :key="product.id">
+    <van-card
+        :num="1"
+          :price="product.price"
+          currency="£"
+          :title="product.productName"
+          desc="Description"
+          centered
+          thumb="123"
+        >
+        <template #footer>
+          <van-button v-on:click="addItemToCart(product)" size="mini">Add to Cart</van-button>
+        </template>
+        </van-card>
+
     </div>
   </main>
 </template>

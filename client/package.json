@@ -9,6 +9,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "vant": "^3.5.3",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },

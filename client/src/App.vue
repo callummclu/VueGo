@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+const active = ref(0);
 </script>
 
 <script lang="ts">
-import Navbar from "./components/Navbar.vue";
+import Nav from "./components/Navbar.vue";
+import { ref } from 'vue';
 
 export default {
     data(){
@@ -13,7 +15,7 @@ export default {
       }
     },
     components: {
-        Navbar
+        Nav
     },
     methods:{
       checkBasketExists: function() {
@@ -24,9 +26,12 @@ export default {
           fetch(`http://localhost:3000/basket/${basketId}`)
             .then(async (res:any) => {
               let res_json = await res.json()
-              if(res_json.data === "undefined"){
+
+              if('message' in res_json){
                 this.createNewBasket()
-              } else {
+              }
+              
+              if('data' in res_json){
                 this.basketData = res_json.data
                 this.basketLength = ((this.basketData as any).items).length.toString()
               }
@@ -47,6 +52,9 @@ export default {
           let res_json = await res.json()
           localStorage.setItem("basketId",res_json.data.InsertedID)
         })
+      },
+      redirect: function(page:any){
+        window.location.replace(window.location.origin+"/"+page)
       }
     },
     created(){
@@ -56,9 +64,15 @@ export default {
 </script>
 
 <template>
-
-  <Navbar :items-number="basketLength"/>
+  <Nav/>
   <RouterView />
+  <van-tabbar v-model="active">
+    <van-tabbar-item @click="redirect('')" icon="home-o">Home</van-tabbar-item>
+    <van-tabbar-item @click="redirect('products')" icon="coupon-o">Products</van-tabbar-item>
+    <van-tabbar-item @click="redirect('basket')" icon="cart-o" :badge="basketLength">Basket</van-tabbar-item>
+    
+  </van-tabbar>
+  
 </template>
 
 <style scoped>
