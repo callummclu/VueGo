@@ -125,7 +125,21 @@ func AddToBasket() gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusOK, gin.H{"data": result})
+		var basket models.Basket
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
+		}
+
+		err = basketCollection.FindOne(c, bson.D{{"_id", objectId}}).Decode(&basket)
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": err})
+			return
+		}
+
+		c.JSON(http.StatusOK, gin.H{"data": basket, "result": result})
 	}
 }
 
