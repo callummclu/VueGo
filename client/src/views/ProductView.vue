@@ -29,6 +29,7 @@
 
 <template>
   <main>
+    <div v-if="data.length>0">
     <div v-for="product in data" :key="product.id">
     <van-card
         :num="1"
@@ -44,6 +45,10 @@
         </template>
         </van-card>
 
+    </div>
+    </div>
+    <div style="margin:50px; text-align:center;" v-else>
+      <p>no products avaliable</p>
     </div>
   </main>
 </template>

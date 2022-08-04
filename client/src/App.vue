@@ -1,23 +1,11 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import { RouterView,useRoute } from 'vue-router'
-
-const route = useRoute()
-
-let active = ref(0)
-
-if (route.name?.toString() == "Home"){
-  const active = ref(0)
-} else if (route.name?.toString() == "Products"){
-  const active = ref(1)
-} else {
-  const active = ref(2)
-}
-
 </script>
 
 <script lang="ts">
 import Nav from "./components/Navbar.vue";
-import { ref } from 'vue';
 
 export default {
     data(){
@@ -71,6 +59,14 @@ export default {
     },
     created(){
       this.checkBasketExists()
+      const route = useRoute()
+      // if (route.name?.toString() == "Home"){
+      //   active = ref(0)
+      // } else if (route.name?.toString() == "Products"){
+      //   active = ref(1)
+      // } else {
+      //   active = ref(2)
+      // }
     }
 }
 </script>
@@ -78,10 +74,10 @@ export default {
 <template>
   <Nav/>
   <RouterView />
-  <van-tabbar v-model="active">
-    <van-tabbar-item @click="redirect('')" icon="home-o">Home</van-tabbar-item>
-    <van-tabbar-item @click="redirect('products')" icon="coupon-o">Products</van-tabbar-item>
-    <van-tabbar-item @click="redirect('basket')" icon="cart-o" :badge="basketLength">Basket</van-tabbar-item>
+  <van-tabbar>
+    <van-tabbar-item name="Home" @click="redirect('')" icon="home-o">Home</van-tabbar-item>
+    <van-tabbar-item name="Products" @click="redirect('products')" icon="coupon-o">Products</van-tabbar-item>
+    <van-tabbar-item name="Basket" @click="redirect('basket')" icon="cart-o" :badge="basketLength">Basket</van-tabbar-item>
     
   </van-tabbar>
   
