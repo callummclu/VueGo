@@ -54,7 +54,7 @@
         </van-card>
     </div>
 
-    <div style="text-align:center;" v-if="data.items.length == 0">
+    <div style="text-align:center;" v-if="!data.items || data.items.length == 0">
       <p>Basket is empty</p>
     </div>
 

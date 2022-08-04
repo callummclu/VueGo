@@ -24,7 +24,7 @@ export default defineComponent({
 
 <template>
     <van-nav-bar 
-        :title="'VueGo - ' + title.name" 
+        :title="'VueGo - ' + title.name?.toString()" 
     />
 </template>
 

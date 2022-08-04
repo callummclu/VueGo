@@ -1,6 +1,18 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-const active = ref(0);
+import { RouterView,useRoute } from 'vue-router'
+
+const route = useRoute()
+
+let active = ref(0)
+
+if (route.name?.toString() == "Home"){
+  const active = ref(0)
+} else if (route.name?.toString() == "Products"){
+  const active = ref(1)
+} else {
+  const active = ref(2)
+}
+
 </script>
 
 <script lang="ts">
