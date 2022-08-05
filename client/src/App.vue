@@ -55,19 +55,16 @@ export default {
       },
       redirect: function(page:any){
         window.location.replace(window.location.origin+"/"+page)
+      },
+      changeBasket: function(data:any){
+        console.log("here")
+        this.basketData = data.items.length.toString()
       }
     },
     created(){
       this.checkBasketExists()
-      const route = useRoute()
-      // if (route.name?.toString() == "Home"){
-      //   active = ref(0)
-      // } else if (route.name?.toString() == "Products"){
-      //   active = ref(1)
-      // } else {
-      //   active = ref(2)
-      // }
-    }
+    },
+
 }
 </script>
 

@@ -38,7 +38,7 @@ func GetBasket() gin.HandlerFunc {
 			return
 		}
 
-		err = basketCollection.FindOne(c, bson.D{{"_id", objectId}}).Decode(&basket)
+		err = basketCollection.FindOne(c, bson.D{{Key: "_id", Value: objectId}}).Decode(&basket)
 
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": err})
