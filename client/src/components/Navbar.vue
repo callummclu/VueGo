@@ -9,14 +9,6 @@ export default defineComponent({
       return {
         title:route
       }
-    },
-    methods : {
-        basketRedirect: function() {
-            window.location.href = window.location.origin + "/basket"
-        },
-        homeRedirect: function() {
-            window.location.href = window.location.origin
-        }
     }
 })
 </script>
@@ -27,11 +19,3 @@ export default defineComponent({
         :title="'VueGo - ' + title.name?.toString()" 
     />
 </template>
-
-<style scoped>
-.navbar{
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-</style>
