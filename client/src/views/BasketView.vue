@@ -18,7 +18,7 @@
           body:JSON.stringify(product)
         }).then(async (res:any) => {
           let res_json = await res.json()
-          console.log(res_json)
+          window.location.reload()
         })
       },
       checkout: function(){
@@ -38,7 +38,7 @@
 
     <div  v-for="product in data.items" :key="product.product">
         <van-card
-        :num="1"
+          :num="product.quantity"
           :price="product.price"
           currency="£"
           :title="product.productName"

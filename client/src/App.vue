@@ -18,6 +18,17 @@ export default {
         Nav
     },
     methods:{
+      getBasketQuantity: function(data:any):string {
+        let totalItems = 0
+
+        data.items.forEach((item:any) => {
+          totalItems += item.quantity
+        });
+
+        
+
+        return totalItems.toString()
+      },
       checkBasketExists: function() {
         let basketId = localStorage.getItem("basketId")
 
@@ -33,7 +44,7 @@ export default {
               
               if('data' in res_json){
                 this.basketData = res_json.data
-                this.basketLength = ((this.basketData as any).items).length.toString()
+                this.basketLength = this.getBasketQuantity(res_json.data)
               }
             })
         } else {
