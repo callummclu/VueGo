@@ -36,6 +36,7 @@
         :num="item.quantity"
         :price="item.price"
         :title="item.productName"
+        currency="£"
         :quantity="item.quantity"
         desc="Description"
         thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg"
