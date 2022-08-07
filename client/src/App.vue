@@ -90,7 +90,3 @@ export default {
   </van-tabbar>
   
 </template>
-
-<style scoped>
-
-</style>
